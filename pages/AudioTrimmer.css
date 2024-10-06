@@ -1,0 +1,85 @@
+.audio-trimmer-card {
+  background-color: #1a1b1e;
+  color: #c1c2c5;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.audio-trimmer-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.canvas-container {
+  position: relative;
+  height: 200px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.audio-canvas {
+  width: 100%;
+  height: 100%;
+  background-color: #25262b;
+  cursor: grab;
+  transition: background-color 0.2s ease;
+}
+
+.audio-canvas:active {
+  cursor: grabbing;
+}
+
+.trim-handle {
+  width: 8px;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(78, 204, 163, 0.5);
+  transition: background-color 0.2s ease;
+}
+
+.trim-handle.active {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+
+.trim-handle.hovered {
+  background-color: rgba(78, 204, 163, 0.8);
+}
+
+.number-input {
+  background-color: #25262b;
+  color: #c1c2c5;
+}
+
+body {
+  background-color: #1a1b1e;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cont {
+  padding-top: 40%;
+}
+
+.text {
+  text-align: center;
+  color: white;
+}
+
+.textH1 {
+  font-size: xx-large;
+  font-weight: 800;
+}
+.textH2 {
+  font-size: x-large;
+}
+
+.stylized-button {
+  border: 2px solid #6e56cf;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: white;
+}

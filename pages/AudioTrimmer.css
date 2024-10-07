@@ -1,3 +1,6 @@
+body {
+  background-color: #1a1b1e;
+}
 .audio-trimmer-card {
   background-color: #1a1b1e;
   color: #c1c2c5;
@@ -49,10 +52,6 @@
 .number-input {
   background-color: #25262b;
   color: #c1c2c5;
-}
-
-body {
-  background-color: #1a1b1e;
 }
 
 .center {

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import { Lock, SkipBack, Scissors, Trash2 } from "lucide-react";
 import {
   MantineProvider,
   createTheme,
@@ -14,13 +15,6 @@ import {
   Stack,
   Select,
 } from "@mantine/core";
-import {
-  IconPlayerPlay,
-  IconPlayerTrackPrev,
-  IconCut,
-  IconTrash,
-  IconUpload,
-} from "@tabler/icons-react";
 import "@mantine/core/styles.css";
 
 const theme = createTheme({
@@ -302,7 +296,7 @@ function AudioTrimmer({ audioBuffer, fileName, onReset }: AudioTrimmerProps) {
         <Group>
           <Text size="xl">{fileName}</Text>
           <ActionIcon variant="subtle" color="gray">
-            <IconPlayerTrackPrev size={18} />
+            <SkipBack size={18} />
           </ActionIcon>
         </Group>
 
@@ -327,10 +321,10 @@ function AudioTrimmer({ audioBuffer, fileName, onReset }: AudioTrimmerProps) {
 
         <Group>
           <ActionIcon variant="subtle" color="gray">
-            <IconCut size={18} />
+            <Scissors size={18} />
           </ActionIcon>
           <ActionIcon variant="subtle" color="gray" onClick={onReset}>
-            <IconTrash size={18} />
+            <Trash2 size={18} />
           </ActionIcon>
         </Group>
 
@@ -378,7 +372,7 @@ function AudioTrimmer({ audioBuffer, fileName, onReset }: AudioTrimmerProps) {
   );
 }
 
-export default function AudioTrimmerApp() {
+export default function AudioCutterApp() {
   const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
 
@@ -399,38 +393,144 @@ export default function AudioTrimmerApp() {
   };
 
   return (
-    <div className="center">
-      {audioBuffer && fileName ? (
-        <AudioTrimmer
-          audioBuffer={audioBuffer}
-          fileName={fileName}
-          onReset={handleReset}
-        />
-      ) : (
-        <div>
-          <Card style={{ backgroundColor: "#1A1B1E", color: "#C1C2C5" }}>
-            <Stack align="center">
-              <span>
-                <p className="text textH1">Audio Cutter</p>
-                <p className="text textH2">
-                  Free editor to trim and cut any audio file online
-                </p>
-              </span>
+    <MantineProvider theme={theme}>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          overflowY: "auto",
+          color: "#EEEEEE",
+          backgroundColor: "#17171E",
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "200px",
+            borderBottom: "1px solid #2C2C36",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+              gap: "25px",
+              textTransform: "uppercase",
+              color: "#D8D8E2",
+              fontWeight: "bold",
+            }}
+          >
+            <div>How it works</div>
+            <div>Joiner</div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              color: "#D8D8E2",
+              justifyItems: "center",
+              alignItems: "center",
+              gap: "25px",
+              marginTop: "20px",
+            }}
+          >
+            <h1 style={{ fontSize: "46px", margin: "0" }}>Audio Cutter</h1>
+            <p style={{ fontSize: "23px", margin: "0" }}>
+              Free editor to trim and cut any audio file online
+            </p>
+            {audioBuffer && fileName ? (
+              <AudioTrimmer
+                audioBuffer={audioBuffer}
+                fileName={fileName}
+                onReset={handleReset}
+              />
+            ) : (
               <FileButton onChange={handleFileUpload} accept="audio/*">
                 {(props) => (
                   <Button
                     {...props}
-                    className="stylized-button"
-                    style={{ backgroundColor: "#1A1B1E", color: "#ffffff" }}
+                    style={{
+                      backgroundColor: "#665DC3",
+                      color: "#ffffff",
+                      padding: "10px 20px",
+                      fontSize: "18px",
+                      border: "4px",
+                      borderRadius: "15px",
+                      cursor: "pointer",
+                    }}
                   >
                     Browse my files
                   </Button>
                 )}
               </FileButton>
-            </Stack>
-          </Card>
+            )}
+          </div>
         </div>
-      )}
-    </div>
+
+        <div
+          style={{
+            width: "100%",
+            backgroundColor: "#17171E",
+            padding: "60px",
+          }}
+        >
+          <p style={{ fontSize: "35px", fontWeight: "500" }}>How to cut audio</p>
+          <div
+            style={{
+              backgroundColor: "#1F1F28",
+              borderLeft: "4px solid #665DC3",
+              padding: "8px 30px",
+              marginBottom: "20px",
+              fontSize: "25px",
+            }}
+          >
+            <p>
+              This app can be used to trim and/or cut audio tracks, remove an audio
+              fragments. Fade in and fade out your music easily to make the audio
+              harmoniously.
+            </p>
+            <p>
+              It fast and easy to use. You can save the audio file in any format (codec
+              parameters are configured)
+            </p>
+            <p>
+              It works directly in the browser, no needs to install any software, is
+              available for mobile devices.
+            </p>
+          </div>
+          <div style={{ marginTop: "30px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "25px",
+                fontWeight: "500",
+                marginBottom: "10px",
+              }}
+            >
+              <Lock size={30} style={{ marginRight: "10px" }} />
+              Privacy and Security Guaranteed
+            </div>
+            <div
+              style={{
+                backgroundColor: "#1F1F28",
+                borderLeft: "4px solid #665DC3",
+                padding: "8px 30px",
+                fontSize: "25px",
+              }}
+            >
+              This is serverless app. Your files does not leave your device
+            </div>
+          </div>
+        </div>
+      </div>
+    </MantineProvider>
   );
 }
